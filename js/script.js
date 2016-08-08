@@ -7,36 +7,17 @@ $(document).ready(function(){
 var playerOneScore = $('#player1score');
 var playerTwoScore = $('#player2score');
 var square = $('.square');
-
-//scoretracking function for player 1
-function scoreOne(){
-  var currentValue=parseInt(playerOneScore.text());
-  var plusOne=(currentValue) + 1;
-  playerOneScore.text(plusOne);
-}
-
-//scoretracking function for player 1
-function scoreTwo(){
-  var currentValue=parseInt(playerTwoScore.text());
-  var plusOne=(currentValue) + 1;
-  playerTwoScore.text(plusOne);
-}
-
-// board reset function
-function clearBoard() {
-  square.removeClass('fa fa-times fa fa-circle-o');
-}
+var board = $('.board');
 
 //eventhandler
 //1 initiliaze player 1
 //2 Create click event
 var player = 1;
-$('.square').on('click', function() { //alert('click');
+  square.on('click', function() { //alert('click');
 
 //3a perform fnction adding symbol to board based on user ID
 //3b provide error notification if cell already populated
 //3c toggle player ID between 1 & 2
-
 var selectedSquare = $(this);
 
 if(selectedSquare.hasClass('fa fa-times') || selectedSquare.hasClass('fa fa-circle-o')) {
@@ -50,6 +31,9 @@ if(selectedSquare.hasClass('fa fa-times') || selectedSquare.hasClass('fa fa-circ
         scoreOne();
         clearBoard();
         player=2;
+      } else if(catsGame()) {
+        alert ('MEOW!');
+        clearBoard();
       } else {
       player = 2, ($('.current_player').text('2'));
     }
@@ -62,6 +46,9 @@ if(selectedSquare.hasClass('fa fa-times') || selectedSquare.hasClass('fa fa-circ
         scoreTwo();
         clearBoard();
         player=1;
+      } else if(catsGame()) {
+        alert ('MEOW!');
+        clearBoard();
       } else {
       player = 1, ($('.current_player').text('1'));
       }
@@ -70,10 +57,10 @@ if(selectedSquare.hasClass('fa fa-times') || selectedSquare.hasClass('fa fa-circ
 }
 });
 
-//GAMELOGIC
-//1 define end game conditions:
-//1a winning conditions
-//2a cats game
+
+//4 end game conditions:
+//4a winning conditions
+
 
 function winningConditions(symbol) {
   //rows
@@ -100,7 +87,27 @@ function winningConditions(symbol) {
   }
 }
 
+//4b cats gamefunction
+function catsGame(){
+  return board.find('td.fa').length === 9;
+}
 
+//scoretracking function for players 1&2
+function scoreOne(){
+  var currentValue=parseInt(playerOneScore.text());
+  var plusOne=(currentValue) + 1;
+  playerOneScore.text(plusOne);
+}
+function scoreTwo(){
+  var currentValue=parseInt(playerTwoScore.text());
+  var plusOne=(currentValue) + 1;
+  playerTwoScore.text(plusOne);
+}
+
+// board reset function
+function clearBoard() {
+  square.removeClass('fa fa-times fa fa-circle-o');
+}
 
 });
 
