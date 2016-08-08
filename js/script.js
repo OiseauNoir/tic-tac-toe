@@ -12,7 +12,6 @@ $('.square').on('click', function() {
     //alert('click');
 var playerOneScore = $('#player1score');
 var playerTwoScore = $('#player2score');
-var square = $('square')
 
 
 function scoreOne(){
@@ -39,7 +38,9 @@ if(selectedSquare.hasClass('fa fa-times') || selectedSquare.hasClass('fa fa-circ
   if(player===1) {
     selectedSquare.addClass('fa fa-times');
       if(winningConditions('fa fa-times')) {
-        alert ('Player ' + player + 'wins!'); scoreOne();
+        alert ('Player ' + player + 'wins!');
+        scoreOne();
+        clearBoard();
       } else {
       player = 2, ($('.current_player').text('2'));
     }
@@ -48,7 +49,9 @@ if(selectedSquare.hasClass('fa fa-times') || selectedSquare.hasClass('fa fa-circ
   if(player===2) {
     selectedSquare.addClass('fa fa-circle-o');
       if(winningConditions('fa fa-circle-o')) {
-        alert ('Player ' + player + 'wins!'), scoreTwo();
+        alert ('Player ' + player + 'wins!');
+        scoreTwo();
+        clearBoard();
       } else {
       player = 1, ($('.current_player').text('1'));
       }
@@ -61,7 +64,7 @@ if(selectedSquare.hasClass('fa fa-times') || selectedSquare.hasClass('fa fa-circ
 //2 define end game conditions:
 //2a winning conditions
 
-var winningConditions = function(symbol) {
+function winningConditions(symbol) {
   //rows
   if ($('.topleft').hasClass(symbol) && $('.topmid').hasClass(symbol) && $('.topright').hasClass(symbol)) {
     return true;
@@ -86,6 +89,20 @@ var winningConditions = function(symbol) {
   }
 }
 
+
+function clearBoard() {
+  $('.square').removeClass('fa fa-times && fa fa-circle-o');
+}
+
+
+
+
+
+
+
+
+
+});
 //2b cat's game conditions
 // var catsGameConditions function,  {
 //   if ($('.square').hasClass(symbol), winningConditions = false); {
@@ -110,25 +127,3 @@ var winningConditions = function(symbol) {
 // [.topright, .midmid, .btmleft],
 // ]
 // var endgame: winConditions || drawConditions
-
-
-
-
-// 2a winning scenario (3 in a row)
-// 2b tie (all space full && 2a=false)
-// var drawConditions... (winConditions not true & board full)
-
-
-// function endgame(){}
-// loop through winConditions and check T/F
-
-//3 reset board after end of game
-//4 increment winner score by 1
-
-// if winConditions are true,
-// then clear board and increment winner score +1
-
-// else if drawconditions are true,
-// then clear board (no changes to winner score)
-
-});
