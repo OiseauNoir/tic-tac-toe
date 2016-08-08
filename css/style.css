@@ -2,6 +2,10 @@ body {
   text-align: center;
 }
 
+th {
+  text-decoration: underline;
+}
+
 table {
   margin: 20px auto;
 }
@@ -13,10 +17,12 @@ table.board {
 
 .board td {
   width: 100px;
-  height: 100px;
+  height: 80px;
   text-align: center;
-  border: 5px solid black;
+  border: 1px solid black;
   cursor: pointer;
+  float: left;
+  padding-top: 19px
 }
 
 .board tr td:first-child {

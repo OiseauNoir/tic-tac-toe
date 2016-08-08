@@ -1,26 +1,25 @@
 $(document).ready(function(){
   //console.log('ready!')
 
-
-
-//gameplay
+//GAMEPLAY
 
 //1 initiliaze player 1
-  // var current_player;define player 1(x) and player 2(o)
+// var current player; define player 1(x) and player 2(o)
 var player = 1;
 
 //2 Create click event
-$('.square').on('click', function(event) {
-  //alert('click');
+$('.square').on('click', function() {
+    //alert('click');
 
-//2a perform fnction adding symbol to board based on user ID (define above
+//2a perform fnction adding symbol to board based on user ID
 //2b provide error notification if cell already populated
-//2c toggle player ID between 1 & 2 (define above as var)
+//2c toggle player ID between 1 & 2
 
-var selectedSquare = $(this); //this = .square
+var selectedSquare = $(this);
+
 if(selectedSquare.hasClass('fa fa-times') || selectedSquare.hasClass('fa fa-circle-o')) {
   alert('Hey dummy! This square is already taken!');
-} else {  //if free square
+} else {  //if free square...
   if(player===1) {
     selectedSquare.addClass('fa fa-times');
       if(winningConditions('fa fa-times')) {
@@ -28,7 +27,8 @@ if(selectedSquare.hasClass('fa fa-times') || selectedSquare.hasClass('fa fa-circ
       } else {
       player = 2;
     }
-  } else {
+} else {
+  if(player===2) {
     selectedSquare.addClass('fa fa-circle-o');
       if(winningConditions('fa fa-circle-o')) {
         alert ('Player ' + player + 'wins!');
@@ -37,13 +37,12 @@ if(selectedSquare.hasClass('fa fa-times') || selectedSquare.hasClass('fa fa-circ
       }
     }
   }
+}
 });
-//4 enable repeat 1 through 3 ...(max 9 possibe turns)
 
 
 
-
-//gamelogic
+//GAMELOGIC
 
 //2 define end game conditions (2):
 function winningConditions(symbol) {
@@ -70,6 +69,8 @@ function winningConditions(symbol) {
     return false;
   }
 }
+
+// Can I use a loop instead of if/thens?
 // var winConditions = [
 // [.topleft, .topmid, .topright],
 // [.midleft, .midmid, .midright],
@@ -81,15 +82,14 @@ function winningConditions(symbol) {
 // [.topright, .midmid, .btmleft],
 // ]
 // var endgame: winConditions || drawConditions
-//
+
+
+
+
 // 2a winning scenario (3 in a row)
-
-
-
-//2b tie (all space full && 2a=false)
+// 2b tie (all space full && 2a=false)
 // var drawConditions... (winConditions not true & board full)
 
-//3 check for end game conditions
 
 // function endgame(){}
 // loop through winConditions and check T/F
