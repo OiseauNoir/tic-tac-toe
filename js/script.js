@@ -5,12 +5,27 @@ $(document).ready(function(){
 
 //1 initiliaze player 1
 // var current player; define player 1(x) and player 2(o)
-var player = 1;
-
 //2 Create click event
+
+var player = 1;
 $('.square').on('click', function() {
     //alert('click');
+var playerOneScore = $('#player1score');
+var playerTwoScore = $('#player2score');
+var square = $('square')
 
+
+function scoreOne(){
+  var currentValue=parseInt(playerOneScore.text());
+  var plusOne=(currentValue) + 1;
+  playerOneScore.text(plusOne);
+}
+
+function scoreTwo(){
+  var currentValue=parseInt(playerTwoScore.text());
+  var plusOne=(currentValue) + 1;
+  playerTwoScore.text(plusOne);
+}
 //2a perform fnction adding symbol to board based on user ID
 //2b provide error notification if cell already populated
 //2c toggle player ID between 1 & 2
@@ -19,19 +34,21 @@ var selectedSquare = $(this);
 
 if(selectedSquare.hasClass('fa fa-times') || selectedSquare.hasClass('fa fa-circle-o')) {
   alert('Hey dummy! This square is already taken!');
-} else {  //if free square...
+
+} else {
   if(player===1) {
     selectedSquare.addClass('fa fa-times');
       if(winningConditions('fa fa-times')) {
-        alert ('Player ' + player + 'wins!');
+        alert ('Player ' + player + 'wins!'); scoreOne();
       } else {
       player = 2, ($('.current_player').text('2'));
     }
+
 } else {
   if(player===2) {
     selectedSquare.addClass('fa fa-circle-o');
       if(winningConditions('fa fa-circle-o')) {
-        alert ('Player ' + player + 'wins!');
+        alert ('Player ' + player + 'wins!'), scoreTwo();
       } else {
       player = 1, ($('.current_player').text('1'));
       }
@@ -41,13 +58,10 @@ if(selectedSquare.hasClass('fa fa-times') || selectedSquare.hasClass('fa fa-circ
 });
 
 //GAMELOGIC
-
 //2 define end game conditions:
-
 //2a winning conditions
 
-function winningConditions(symbol) {
-
+var winningConditions = function(symbol) {
   //rows
   if ($('.topleft').hasClass(symbol) && $('.topmid').hasClass(symbol) && $('.topright').hasClass(symbol)) {
     return true;
@@ -55,7 +69,6 @@ function winningConditions(symbol) {
     return true;
   } else if ($('.btmleft').hasClass(symbol) && $('.btmmid').hasClass(symbol) && $('.btmright').hasClass(symbol)) {
     return true;
-
   //columns
   } else if ($('.topleft').hasClass(symbol) && $('.midleft').hasClass(symbol) && $('.btmleft').hasClass(symbol)) {
     return true;
@@ -63,8 +76,7 @@ function winningConditions(symbol) {
     return true;
   } else if ($('.topright').hasClass(symbol) && $('.midright').hasClass(symbol) && $('.btmright').hasClass(symbol)) {
     return true;
-
-  //diagonal
+  //diagonals
   } else if ($('.topleft').hasClass(symbol) && $('.midmid').hasClass(symbol) && $('.btmright').hasClass(symbol)) {
     return true;
   } else if ($('.topright').hasClass(symbol) && $('.midmid').hasClass(symbol) && $('.btmleft').hasClass(symbol)) {
@@ -75,8 +87,8 @@ function winningConditions(symbol) {
 }
 
 //2b cat's game conditions
-// function catsGameConditions() {
-//   if ($('.square').hasClass(symbol), winningConditions() = false); {
+// var catsGameConditions function,  {
+//   if ($('.square').hasClass(symbol), winningConditions = false); {
 //     return true;
 //   } else {
 //     return false;
