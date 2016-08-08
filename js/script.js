@@ -3,34 +3,40 @@ $(document).ready(function(){
 
 //GAMEPLAY
 
-//1 initiliaze player 1
-// var current player; define player 1(x) and player 2(o)
-//2 Create click event
+//variables
 var playerOneScore = $('#player1score');
 var playerTwoScore = $('#player2score');
 var square = $('.square');
 
 //scoretracking function for player 1
-  function scoreOne(){
-    var currentValue=parseInt(playerOneScore.text());
-    var plusOne=(currentValue) + 1;
-    playerOneScore.text(plusOne);
-  }
+function scoreOne(){
+  var currentValue=parseInt(playerOneScore.text());
+  var plusOne=(currentValue) + 1;
+  playerOneScore.text(plusOne);
+}
 
 //scoretracking function for player 1
-  function scoreTwo(){
-    var currentValue=parseInt(playerTwoScore.text());
-    var plusOne=(currentValue) + 1;
-    playerTwoScore.text(plusOne);
-  }
+function scoreTwo(){
+  var currentValue=parseInt(playerTwoScore.text());
+  var plusOne=(currentValue) + 1;
+  playerTwoScore.text(plusOne);
+}
 
+// board reset function
+function clearBoard() {
+  square.removeClass('fa fa-times fa fa-circle-o');
+}
+
+//eventhandler
+//1 initiliaze player 1
+//2 Create click event
 var player = 1;
-  $('.square').on('click', function() { //alert('click');
+$('.square').on('click', function() { //alert('click');
 
+//3a perform fnction adding symbol to board based on user ID
+//3b provide error notification if cell already populated
+//3c toggle player ID between 1 & 2
 
-//2a perform fnction adding symbol to board based on user ID
-//2b provide error notification if cell already populated
-//2c toggle player ID between 1 & 2
 var selectedSquare = $(this);
 
 if(selectedSquare.hasClass('fa fa-times') || selectedSquare.hasClass('fa fa-circle-o')) {
@@ -65,8 +71,9 @@ if(selectedSquare.hasClass('fa fa-times') || selectedSquare.hasClass('fa fa-circ
 });
 
 //GAMELOGIC
-//2 define end game conditions:
-//2a winning conditions
+//1 define end game conditions:
+//1a winning conditions
+//2a cats game
 
 function winningConditions(symbol) {
   //rows
@@ -94,27 +101,8 @@ function winningConditions(symbol) {
 }
 
 
-function clearBoard() {
-square.removeClass('fa fa-times && fa fa-circle-o');
-}
-
-
-
-
-
-
-
-
 
 });
-//2b cat's game conditions
-// var catsGameConditions function,  {
-//   if ($('.square').hasClass(symbol), winningConditions = false); {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
 
 
 
