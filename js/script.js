@@ -25,7 +25,7 @@ if(selectedSquare.hasClass('fa fa-times') || selectedSquare.hasClass('fa fa-circ
       if(winningConditions('fa fa-times')) {
         alert ('Player ' + player + 'wins!');
       } else {
-      player = 2;
+      player = 2, ($('.current_player').text('2'));
     }
 } else {
   if(player===2) {
@@ -33,19 +33,21 @@ if(selectedSquare.hasClass('fa fa-times') || selectedSquare.hasClass('fa fa-circ
       if(winningConditions('fa fa-circle-o')) {
         alert ('Player ' + player + 'wins!');
       } else {
-      player = 1;
+      player = 1, ($('.current_player').text('1'));
       }
     }
   }
 }
 });
 
-
-
 //GAMELOGIC
 
-//2 define end game conditions (2):
+//2 define end game conditions:
+
+//2a winning conditions
+
 function winningConditions(symbol) {
+
   //rows
   if ($('.topleft').hasClass(symbol) && $('.topmid').hasClass(symbol) && $('.topright').hasClass(symbol)) {
     return true;
@@ -53,6 +55,7 @@ function winningConditions(symbol) {
     return true;
   } else if ($('.btmleft').hasClass(symbol) && $('.btmmid').hasClass(symbol) && $('.btmright').hasClass(symbol)) {
     return true;
+
   //columns
   } else if ($('.topleft').hasClass(symbol) && $('.midleft').hasClass(symbol) && $('.btmleft').hasClass(symbol)) {
     return true;
@@ -60,6 +63,7 @@ function winningConditions(symbol) {
     return true;
   } else if ($('.topright').hasClass(symbol) && $('.midright').hasClass(symbol) && $('.btmright').hasClass(symbol)) {
     return true;
+
   //diagonal
   } else if ($('.topleft').hasClass(symbol) && $('.midmid').hasClass(symbol) && $('.btmright').hasClass(symbol)) {
     return true;
@@ -69,6 +73,18 @@ function winningConditions(symbol) {
     return false;
   }
 }
+
+//2b cat's game conditions
+// function catsGameConditions() {
+//   if ($('.square').hasClass(symbol), winningConditions() = false); {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+
+
+
 
 // Can I use a loop instead of if/thens?
 // var winConditions = [
