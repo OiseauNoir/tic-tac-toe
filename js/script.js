@@ -1,7 +1,6 @@
 $(document).ready(function(){
   //console.log('ready!')
 
-//GAMEPLAY
 
 //variables
 var playerOneScore = $('#player1score');
@@ -9,9 +8,7 @@ var playerTwoScore = $('#player2score');
 var square = $('.square');
 var board = $('.board');
 
-//eventhandler
-//1 initiliaze player 1
-//2 Create click event
+//1 initiliaze player 1 & create click event
 var player = 1;
   square.on('click', function() { //alert('click');
 
@@ -37,7 +34,6 @@ if(selectedSquare.hasClass('fa fa-times') || selectedSquare.hasClass('fa fa-circ
       } else {
       player = 2, ($('.current_player').text('2'));
     }
-
 } else {
   if(player===2) {
     selectedSquare.addClass('fa fa-circle-o');
@@ -125,4 +121,4 @@ function clearBoard() {
 // [.topleft, .midmid, .btmright],
 // [.topright, .midmid, .btmleft],
 // ]
-// var endgame: winConditions || drawConditions
+// var endgame: winConditions
